@@ -57,7 +57,7 @@ export const NewTodoEntry: React.FC<Props> = ({ handleClick }) => {
 
       <div className="mb-6 flex flex-col">
         <button type="button" className="border border-yellow-400 px-2 py-1 bg-yellow-100 transition transform hover:-translate-y-1 mt-2 max-w-lg leading-5 tracking-wide"
-          onClick={() => handleAddTodo({ title: title, completed: completed })}
+          onClick={() => handleAddTodo({ id: "", title: title, completed: completed })}
         >
           Create TODO
         </button>

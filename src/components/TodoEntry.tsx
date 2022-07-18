@@ -1,8 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-
-import tw, { css } from 'twin.macro';
 import { updateTodo } from "../../api/todos";
+import tw from "twin.macro"
 
 
 interface Props {
@@ -13,7 +12,7 @@ interface Props {
 
 export const TodoEntry: React.FC<Props> = ({ id, title, initialCompleted }) => {
   const [completed, setCompleted] = useState(initialCompleted)
-  const handleClick = event => {
+  const handleClick = (event: React.MouseEvent) => {
     switch (event.detail) {
       case 1: {
         updateTodo({ id: id, completed: !completed })

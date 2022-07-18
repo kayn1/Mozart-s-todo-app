@@ -46,7 +46,7 @@ export const createTodo = async(todo: Todo): Promise<Todo> => {
   return todo
 }
 
-export const updateTodo = async({id, completed}): Promise<boolean> => {
+export const updateTodo = async({id, completed}: { id: string, completed: boolean }): Promise<boolean> => {
   const doc = db.collection("todo-app-mozart").doc(id)
   doc.update({ completed: completed })
 
