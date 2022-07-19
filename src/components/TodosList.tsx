@@ -13,6 +13,7 @@ export const TodosList: React.FC = () => {
     createTodo(todo);
     setTodos(newTodos);
   };
+
   const [loading, setLoading] = useState(true);
   const handleDelete = (id : string) : void => {
     setTodos(todos => todos.filter(todo => todo.id !== id))
