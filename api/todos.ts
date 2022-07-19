@@ -53,4 +53,9 @@ export const updateTodo = async({id, completed}: { id: string, completed: boolea
   return true
 }
 
+export const deleteTodo = async(id: string): Promise<void> => {
+  const doc = db.collection("todo-app-mozart").doc(id)
+  doc.delete()
+}
+
 export type { Todo, Todos };

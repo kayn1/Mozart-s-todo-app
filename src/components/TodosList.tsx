@@ -4,6 +4,7 @@ import { fetchTodos, Todo, createTodo } from "../../api/todos";
 import { NewTodoEntry } from "./NewTodoEntry";
 import { Spinner } from "./Spinner";
 import { TodoEntry } from "./TodoEntry";
+import { deleteTodo } from "../../api/todos";
 
 export const TodosList: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -13,6 +14,11 @@ export const TodosList: React.FC = () => {
     setTodos(newTodos);
   };
   const [loading, setLoading] = useState(true);
+  const handleDelete = (id : string) : void => {
+    setTodos(todos => todos.filter(todo => todo.id !== id))
+    deleteTodo(id)
+    return
+  }
 
   const todosList = () => {
     return todos.map((todo: Todo) => (
@@ -21,6 +27,7 @@ export const TodosList: React.FC = () => {
         title={todo.title}
         initialCompleted={todo.completed}
         key={todo.title}
+        handleDelete={() => handleDelete(todo.id)}
       />
     ));
   };
