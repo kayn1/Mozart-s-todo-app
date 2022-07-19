@@ -11,8 +11,14 @@ export const NewTodoEntry: React.FC<Props> = ({ handleClick }) => {
   const [title, setTitle] = useState("")
   const [completed, setCompleted] = useState(false)
 
+  const handleAddTodo = (todo: Todo) => {
+    handleClick(todo)
+    setTitle("")
+    setCompleted(false)
+  }
+
   return (
-    <form className="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg my-3">
+    <form className="p-6 max-w-sm mx-auto bg-blue-100 rounded-xl shadow-lg my-3">
       <div className="mb-6 flex flex-col">
         <label
           htmlFor="email"
@@ -38,7 +44,7 @@ export const NewTodoEntry: React.FC<Props> = ({ handleClick }) => {
             required
             value=""
             className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
-            onChange={(e) => setCompleted(!!e.target.value)}
+            onChange={(e) => setCompleted(!completed)}
           />
         </div>
         <label
@@ -50,8 +56,8 @@ export const NewTodoEntry: React.FC<Props> = ({ handleClick }) => {
       </div>
 
       <div className="mb-6 flex flex-col">
-        <button type="button" className="border border-pink-500 px-2 py-1 transition transform hover:-translate-y-1 mt-2 max-w-lg leading-5 tracking-wide"
-          onClick={() => handleClick({ title: title, completed: completed, userId: 5, id: 6 })}
+        <button type="button" className="border border-yellow-400 px-2 py-1 bg-yellow-100 transition transform hover:-translate-y-1 mt-2 max-w-lg leading-5 tracking-wide"
+          onClick={() => handleAddTodo({ id: "", title: title, completed: completed })}
         >
           Create TODO
         </button>
