@@ -6,14 +6,12 @@ import { Spinner } from "./Spinner";
 import { TodoEntry } from "./TodoEntry";
 import { deleteTodo } from "../../api/todos";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { nanoid } from 'nanoid'
 import "./styles.css";
 
 export const TodosList: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const addTodo = async (todo: Todo) => {
     const newTodo = await createTodo(todo);
-    console.log(newTodo)
     const newTodos = [...todos, newTodo];
     setTodos(newTodos);
   };

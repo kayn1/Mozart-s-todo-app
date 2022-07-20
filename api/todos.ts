@@ -48,13 +48,11 @@ export const createTodo = async (todo: Todo): Promise<Todo> => {
 }
 
 export const updateTodo = async ({ id, completed }: { id: string, completed: boolean }): Promise<boolean> => {
-
   if (id != undefined && id != "") {
     const doc = db.collection("todo-app-mozart").doc(id)
-    doc.update({ completed: completed })
-
-    return true
+    await doc.update({ completed: completed })
   }
+  return true
 }
 
 export const deleteTodo = async (id: string): Promise<void> => {
@@ -62,7 +60,7 @@ export const deleteTodo = async (id: string): Promise<void> => {
     try {
       const doc = db.collection("todo-app-mozart").doc(id)
       doc.delete()
-    } catch(error) {
+    } catch (error) {
       console.log(error)
     }
   }
