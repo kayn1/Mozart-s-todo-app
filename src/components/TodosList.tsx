@@ -6,34 +6,31 @@ import { Spinner } from "./Spinner";
 import { TodoEntry } from "./TodoEntry";
 import { deleteTodo } from "../../api/todos";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { nanoid } from 'nanoid'
 import "./styles.css";
 
 export const TodosList: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
-  const addTodo = (todo: Todo) => {
-    const newTodos = [...todos, todo];
-    createTodo(todo);
+  const addTodo = async (todo: Todo) => {
+    const newTodo = await createTodo(todo);
+    console.log(newTodo)
+    const newTodos = [...todos, newTodo];
     setTodos(newTodos);
   };
 
-  const [deleting, setDeleting] = useState("");
-
   const [loading, setLoading] = useState(true);
   const handleDelete = (id: string): void => {
-    setDeleting(id)
-    setTodos(todos => todos.filter(todo => todo.id !== id))
-    deleteTodo(id)
-    return
-  }
-
+    deleteTodo(id);
+    setTodos((todos) => todos.filter((todo) => todo.id !== id));
+    return;
+  };
 
   const todosList = () => {
     return (
       <TransitionGroup component="div">
-        {todos.map((todo: Todo) => (
-          <CSSTransition key={todo.id} timeout={500} classNames="item" >
+        {todos.map((todo: Todo, index: number) => (
+          <CSSTransition key={index} timeout={500} classNames="item">
             <TodoEntry
-              isDeleting={deleting === todo.id}
               id={todo.id}
               title={todo.title}
               initialCompleted={todo.completed}
@@ -41,17 +38,16 @@ export const TodosList: React.FC = () => {
               handleDelete={handleDelete}
             />
           </CSSTransition>
-        ))
-        }
-      </TransitionGroup >
-    )
+        ))}
+      </TransitionGroup>
+    );
   };
 
   useEffect(() => {
     setLoading(true);
     fetchTodos().then((data) => {
       setTodos(data);
-      setLoading(false)
+      setLoading(false);
     });
   }, []);
 

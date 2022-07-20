@@ -39,23 +39,33 @@ export const fetchTodos = async (): Promise<Todo[]> => {
 };
 
 export const createTodo = async (todo: Todo): Promise<Todo> => {
+  const newTodo: Todo = todo
   await db.collection("todo-app-mozart").add({
     title: todo.title, completed: todo.completed
-  })
+  }).then(docRef => newTodo.id = docRef.id)
 
-  return todo
+  return newTodo
 }
 
 export const updateTodo = async ({ id, completed }: { id: string, completed: boolean }): Promise<boolean> => {
-  const doc = db.collection("todo-app-mozart").doc(id)
-  doc.update({ completed: completed })
 
-  return true
+  if (id != undefined && id != "") {
+    const doc = db.collection("todo-app-mozart").doc(id)
+    doc.update({ completed: completed })
+
+    return true
+  }
 }
 
 export const deleteTodo = async (id: string): Promise<void> => {
-  const doc = db.collection("todo-app-mozart").doc(id)
-  doc.delete()
+  if (id != undefined && id != "" && id != null) {
+    try {
+      const doc = db.collection("todo-app-mozart").doc(id)
+      doc.delete()
+    } catch(error) {
+      console.log(error)
+    }
+  }
 }
 
 export type { Todo, Todos };

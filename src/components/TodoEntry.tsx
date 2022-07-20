@@ -8,25 +8,23 @@ interface Props {
   title: string;
   initialCompleted: boolean;
   handleDelete: (id: string) => void;
-  isDeleting: boolean;
 }
 
 export const TodoEntry: React.FC<Props> = ({
   id,
   title,
   initialCompleted,
-  handleDelete,
-  isDeleting
+  handleDelete
 }) => {
   const [completed, setCompleted] = useState(initialCompleted);
   const handleClick = (event: React.MouseEvent) => {
+    if (event.target instanceof HTMLButtonElement) {
+      return
+    }
     switch (event.detail) {
       case 1: {
-        if (!isDeleting) {
-          console.log(isDeleting);
-          updateTodo({ id: id, completed: !completed });
-          setCompleted(!completed);
-        }
+        updateTodo({ id: id, completed: !completed });
+        setCompleted(!completed);
         break;
       }
       default: {
@@ -54,7 +52,7 @@ export const TodoEntry: React.FC<Props> = ({
           This task is {completed ? "completed" : "not completed"}
         </p>
         <button
-          onClick={() => handleDelete(id)}
+          onClick={() => { handleDelete(id) }}
           type="button"
           className="text-white font-medium mt-5 text-xs bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
         >
