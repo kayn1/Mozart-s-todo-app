@@ -32,13 +32,13 @@ export const fetchTodos = async (): Promise<Todo[]> => {
   const data = await db.collection("todo-app-mozart").get()
 
   data.forEach(doc => {
-    todos.push({ id: doc.id, title: doc.data().title, completed: doc.data().completed  })
+    todos.push({ id: doc.id, title: doc.data().title, completed: doc.data().completed })
   })
 
   return todos
 };
 
-export const createTodo = async(todo: Todo): Promise<Todo> => {
+export const createTodo = async (todo: Todo): Promise<Todo> => {
   await db.collection("todo-app-mozart").add({
     title: todo.title, completed: todo.completed
   })
@@ -46,14 +46,14 @@ export const createTodo = async(todo: Todo): Promise<Todo> => {
   return todo
 }
 
-export const updateTodo = async({id, completed}: { id: string, completed: boolean }): Promise<boolean> => {
+export const updateTodo = async ({ id, completed }: { id: string, completed: boolean }): Promise<boolean> => {
   const doc = db.collection("todo-app-mozart").doc(id)
   doc.update({ completed: completed })
 
   return true
 }
 
-export const deleteTodo = async(id: string): Promise<void> => {
+export const deleteTodo = async (id: string): Promise<void> => {
   const doc = db.collection("todo-app-mozart").doc(id)
   doc.delete()
 }

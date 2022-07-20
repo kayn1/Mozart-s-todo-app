@@ -5,6 +5,8 @@ import { NewTodoEntry } from "./NewTodoEntry";
 import { Spinner } from "./Spinner";
 import { TodoEntry } from "./TodoEntry";
 import { deleteTodo } from "../../api/todos";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import "./styles.css";
 
 export const TodosList: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -14,23 +16,35 @@ export const TodosList: React.FC = () => {
     setTodos(newTodos);
   };
 
+  const [deleting, setDeleting] = useState("");
+
   const [loading, setLoading] = useState(true);
-  const handleDelete = (id : string) : void => {
+  const handleDelete = (id: string): void => {
+    setDeleting(id)
     setTodos(todos => todos.filter(todo => todo.id !== id))
     deleteTodo(id)
     return
   }
 
+
   const todosList = () => {
-    return todos.map((todo: Todo) => (
-      <TodoEntry
-        id={todo.id}
-        title={todo.title}
-        initialCompleted={todo.completed}
-        key={todo.title}
-        handleDelete={() => handleDelete(todo.id)}
-      />
-    ));
+    return (
+      <TransitionGroup component="div">
+        {todos.map((todo: Todo) => (
+          <CSSTransition key={todo.id} timeout={500} classNames="item" >
+            <TodoEntry
+              isDeleting={deleting === todo.id}
+              id={todo.id}
+              title={todo.title}
+              initialCompleted={todo.completed}
+              key={todo.title}
+              handleDelete={handleDelete}
+            />
+          </CSSTransition>
+        ))
+        }
+      </TransitionGroup >
+    )
   };
 
   useEffect(() => {
@@ -43,8 +57,8 @@ export const TodosList: React.FC = () => {
 
   return (
     <>
-      { loading && <Spinner /> }
-      { !loading && todosList() }
+      {loading && <Spinner />}
+      {!loading && todosList()}
       <NewTodoEntry handleClick={addTodo} />
     </>
   );
