@@ -1,7 +1,7 @@
 import './App.css'
 import { TodosList } from './components/TodosList'
 
-const App:React.FC =() => {
+const App: React.FC = () => {
   return (
     <div className="App container mx-auto">
       <TodosList />
