@@ -31,7 +31,7 @@ export const TodosList: React.FC = () => {
             <TodoEntry
               id={todo.id}
               title={todo.title}
-              initialCompleted={todo.completed}
+              completed={todo.completed}
               key={todo.title}
               handleDelete={handleDelete}
             />
