@@ -1,19 +1,19 @@
-import React from "react";
-import { useState } from "react";
+import React from 'react'
+import { useState } from 'react'
 
-import { Todo } from "../../api/todos";
+import { Todo } from '../../api/todos'
 
 interface Props {
-  handleClick: (todo: Todo) => void;
+  handleClick: (todo: Todo) => void
 }
 
 export const NewTodoEntry: React.FC<Props> = ({ handleClick }) => {
-  const [title, setTitle] = useState("")
+  const [title, setTitle] = useState('')
   const [completed, setCompleted] = useState(false)
 
   const handleAddTodo = (todo: Todo) => {
     handleClick(todo)
-    setTitle("")
+    setTitle('')
     setCompleted(false)
   }
 
@@ -56,12 +56,14 @@ export const NewTodoEntry: React.FC<Props> = ({ handleClick }) => {
       </div>
 
       <div className="mb-6 flex flex-col">
-        <button type="button" className="border border-yellow-400 px-2 py-1 bg-yellow-100 transition transform hover:-translate-y-1 mt-2 max-w-lg leading-5 tracking-wide"
-          onClick={() => handleAddTodo({ id: "", title: title, completed: completed })}
+        <button
+          type="button"
+          className="border border-yellow-400 px-2 py-1 bg-yellow-100 transition transform hover:-translate-y-1 mt-2 max-w-lg leading-5 tracking-wide"
+          onClick={() => handleAddTodo({ id: '', title: title, completed: completed })}
         >
           Create TODO
         </button>
       </div>
-    </form >
-  );
-};
+    </form>
+  )
+}

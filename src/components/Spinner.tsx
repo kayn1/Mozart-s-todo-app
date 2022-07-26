@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 export const Spinner: React.FC = () => {
   return (
@@ -22,5 +22,5 @@ export const Spinner: React.FC = () => {
         <span className="sr-only">Loading...</span>
       </div>
     </div>
-  );
-};
+  )
+}
