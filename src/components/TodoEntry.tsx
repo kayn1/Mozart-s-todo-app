@@ -6,20 +6,20 @@ import tw from 'twin.macro'
 interface Props {
   id: string
   title: string
-  initialCompleted: boolean
   handleDelete: (id: string) => void
+  completed: boolean
 }
 
-export const TodoEntry: React.FC<Props> = ({ id, title, initialCompleted, handleDelete }) => {
-  const [completed, setCompleted] = useState(initialCompleted)
+export const TodoEntry: React.FC<Props> = ({ id, title, completed, handleDelete }) => {
+  const [status, setStatus] = useState(completed)
   const handleClick = (event: React.MouseEvent) => {
     if (event.target instanceof HTMLButtonElement) {
       return
     }
     switch (event.detail) {
       case 1: {
-        updateTodo({ id: id, completed: !completed })
-        setCompleted(!completed)
+        updateTodo({ id: id, completed: !status })
+        setStatus(!status)
         break
       }
       default: {
@@ -35,14 +35,14 @@ export const TodoEntry: React.FC<Props> = ({ id, title, initialCompleted, handle
       bg-pink-100 hover:bg-pink-200 duration-300
       hover:translate-y-1
       `,
-        completed && tw`bg-green-100 hover:bg-green-200`,
+        status && tw`bg-green-100 hover:bg-green-200`,
       ]}
       onClick={handleClick}
     >
       <div>
         <div className="text-xl font-medium text-black text-center w-100">{title}</div>
         <p className="text-slate-500 w-100">
-          This task is {completed ? 'completed' : 'not completed'}
+          This task is {status ? 'completed' : 'not completed'}
         </p>
         <button
           onClick={() => {
