@@ -46,8 +46,7 @@ export const TodosList: React.FC = () => {
     fetchTodos().then((data) => {
       setTodos(data)
       setLoading(false)
-      t
-    }
+    })
   }, [])
 
   return (
