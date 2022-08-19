@@ -5,6 +5,7 @@ import {
   browserSessionPersistence,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth'
 
 export const createNewuser = (email: string, password: string) => {
@@ -33,5 +34,15 @@ export const signIn = (email: string, password: string) => {
       const errorMessage = error.message
       console.log(errorCode)
       console.log(errorMessage)
+    })
+}
+
+export const logOut = () => {
+  signOut(auth)
+    .then(() => {
+      console.log('Logged out')
+    })
+    .catch((error) => {
+      console.log(error)
     })
 }

@@ -35,6 +35,7 @@ export const createTodo = async (todo: Todo): Promise<Todo> => {
   await addDoc(collection(db, 'todo-app-mozart'), {
     title: todo.title,
     completed: todo.completed,
+    userID: todo.userID,
   }).then((docRef) => (newTodo.id = docRef.id))
 
   return newTodo
