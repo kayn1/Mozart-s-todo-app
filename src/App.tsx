@@ -7,6 +7,7 @@ import { Spinner } from './components/Spinner'
 import User from './components/User'
 
 import { UserContext } from './contexts/UserContext'
+import {useEffect} from 'react'
 
 const App: React.FC = () => {
   const [user, loading, _] = useAuthState(auth)

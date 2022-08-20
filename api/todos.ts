@@ -9,7 +9,9 @@ type Todo = {
   userID: string
 }
 
-connectFirestoreEmulator(db, 'localhost', 8080)
+if (window.location.hostname === 'hostname') {
+  connectFirestoreEmulator(db, 'localhost', 8080)
+}
 
 type Todos = Todo[]
 
