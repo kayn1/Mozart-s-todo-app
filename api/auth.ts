@@ -10,10 +10,7 @@ import {
 
 export const createNewuser = (email: string, password: string) => {
   createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user
-      console.log(user)
-    })
+    .then()
     .catch((error) => {
       const errorCode = error.code
       const errorMessage = error.message
@@ -26,7 +23,7 @@ export const signIn = (email: string, password: string) => {
   setPersistence(auth, browserSessionPersistence)
     .then(() => {
       signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
-        console.log(userCredential.user)
+        console.log("Signed in")
       })
     })
     .catch((error) => {

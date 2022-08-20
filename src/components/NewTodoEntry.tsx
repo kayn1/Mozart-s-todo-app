@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react'
-import { useForm } from 'react-hook-form'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
 import { Todo } from '../../api/todos'
 
@@ -9,13 +9,18 @@ interface Props {
   handleClick: (todo: Todo) => Promise<void>
 }
 
+type FormValues = {
+  title: string;
+  completed: boolean;
+};
+
 export const NewTodoEntry: React.FC<Props> = ({ handleClick }) => {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm()
+  } = useForm<FormValues>()
   const [title, setTitle] = useState('')
   const [completed, setCompleted] = useState(false)
   const user = useContext(UserContext)
@@ -24,6 +29,10 @@ export const NewTodoEntry: React.FC<Props> = ({ handleClick }) => {
   const clear = () => {
     setCompleted(false)
     setTitle('')
+  }
+
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    handleAddTodo(data as Todo)
   }
 
   const handleAddTodo = async (todo: Todo) => {
@@ -79,7 +88,7 @@ export const NewTodoEntry: React.FC<Props> = ({ handleClick }) => {
         <button
           type="submit"
           className="border border-yellow-400 px-2 py-1 bg-yellow-100 transition transform hover:-translate-y-1 mt-2 max-w-lg leading-5 tracking-wide"
-          onClick={handleSubmit(handleAddTodo)}
+          onClick={handleSubmit(onSubmit)}
         >
           Create TODO
         </button>
