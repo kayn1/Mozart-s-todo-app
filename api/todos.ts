@@ -9,7 +9,9 @@ type Todo = {
   userID: string
 }
 
-connectFirestoreEmulator(db, 'localhost', 8080)
+if (window.location.hostname === 'hostname') {
+  connectFirestoreEmulator(db, 'localhost', 8080)
+}
 
 type Todos = Todo[]
 
@@ -35,6 +37,7 @@ export const createTodo = async (todo: Todo): Promise<Todo> => {
   await addDoc(collection(db, 'todo-app-mozart'), {
     title: todo.title,
     completed: todo.completed,
+    userID: todo.userID,
   }).then((docRef) => (newTodo.id = docRef.id))
 
   return newTodo
