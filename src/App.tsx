@@ -1,4 +1,3 @@
-import './App.css'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth } from './../firebase'
 
@@ -15,7 +14,7 @@ const App: React.FC = () => {
     <UserContext.Provider value={user}>
       {user && <User />}
       <div className="App container mx-auto">
-        {loading && !user && <Spinner />}
+        {loading && <Spinner />}
         {!loading && !user && <Login />}
         {user && <TodosList />}
       </div>

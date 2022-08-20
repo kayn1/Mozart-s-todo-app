@@ -12,7 +12,7 @@ export const Login: React.FC = () => {
   }
 
   return (
-    <div className="w-full my-20 max-w-xs mx-auto">
+    <div className="w-full my-20 max-w-s mx-auto">
       <form className="p-6 max-w-sm mx-auto bg-blue-100 rounded-xl shadow-lg my-3">
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
@@ -52,7 +52,6 @@ export const Login: React.FC = () => {
             className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
             href="#"
           >
-            Forgot Password?
           </a>
         </div>
       </form>

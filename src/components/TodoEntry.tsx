@@ -39,7 +39,7 @@ export const TodoEntry: React.FC<Props> = ({ id, title, completed, handleDelete 
       ]}
       onClick={handleClick}
     >
-      <div>
+      <div className='flex flex-col'>
         <div className="text-xl font-medium text-black text-center w-100">{title}</div>
         <p className="text-slate-500 w-100">
           This task is {status ? 'completed' : 'not completed'}
@@ -49,7 +49,7 @@ export const TodoEntry: React.FC<Props> = ({ id, title, completed, handleDelete 
             handleDelete(id)
           }}
           type="button"
-          className="text-white font-medium mt-5 text-xs bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+          className="text-white self-center px-5 py-2.5 font-medium mt-5 text-sm bg-gradient-to-r from-pink-500 via-pink-500 to-pink-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800 shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
         >
           Delete
         </button>
