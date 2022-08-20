@@ -9,6 +9,12 @@ type Todo = {
   userID: string
 }
 
+type NewTodo = {
+  title: string
+  completed: boolean
+  userID: string
+}
+
 if (window.location.hostname === 'hostname') {
   connectFirestoreEmulator(db, 'localhost', 8080)
 }
@@ -69,4 +75,4 @@ export const deleteTodo = async (id: string): Promise<void> => {
   }
 }
 
-export type { Todo, Todos }
+export type { Todo, Todos, NewTodo }

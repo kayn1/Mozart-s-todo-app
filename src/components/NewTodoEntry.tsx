@@ -1,12 +1,12 @@
 import { useState, useContext } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
-import { Todo } from '../../api/todos'
+import { NewTodo } from '../../api/todos'
 
 import { UserContext } from '../contexts/UserContext'
 
 interface Props {
-  handleClick: (todo: Todo) => Promise<void>
+  handleClick: (todo: NewTodo) => Promise<void>
 }
 
 type FormValues = {
@@ -36,7 +36,7 @@ export const NewTodoEntry: React.FC<Props> = ({ handleClick }) => {
   }
 
   const handleAddTodo = async (todo: Todo) => {
-    const newTodo = {...todo, userID: userID}
+    const newTodo = {title: todo.title, userID: userID, completed: completed}
     await handleClick(newTodo)
     clear()
   }
