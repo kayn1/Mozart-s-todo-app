@@ -22,6 +22,7 @@ The answer is the Todo app!
 - [@kayn1](https://www.github.com/kayn1)
 
 
-## Demo
-
-![App](https://postimg.cc/1nbzcKgT)
+## Show
+<p align="center" width="100%">
+    <img width="50%" src="https://i.postimg.cc/Wz1JVWs2/Screenshot-2022-09-01-at-21-29-21.png">
+</p>
