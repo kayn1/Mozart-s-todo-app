@@ -1,5 +1,4 @@
-## Badges
-
+## 
 [![MIT License](https://img.shields.io/badge/Daniel-supports%20me-pink.svg)](https://choosealicense.com/licenses/mit/)
 
 
