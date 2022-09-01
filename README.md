@@ -24,5 +24,4 @@ The answer is the Todo app!
 
 ## Demo
 
-Insert gif or link to demo
-
+![App](https://postimg.cc/1nbzcKgT)
