@@ -36,7 +36,8 @@ export const NewTodoEntry: React.FC<Props> = ({ handleClick }) => {
   }
 
   const handleAddTodo = async (todo: Todo) => {
-    const newTodo = {...todo, userID: userID}
+    const newTodo = { ...todo, userID: userID, completed: completed }
+    console.log(newTodo)
     await handleClick(newTodo)
     clear()
   }
@@ -54,7 +55,7 @@ export const NewTodoEntry: React.FC<Props> = ({ handleClick }) => {
           {...register('title', { required: true })}
           type="text"
           id="title"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:focus:border-blue-500"
           placeholder="What?"
           required
           value={title}
@@ -72,12 +73,12 @@ export const NewTodoEntry: React.FC<Props> = ({ handleClick }) => {
             onChange={(e) => setCompleted(e.target.checked)}
             defaultChecked={false}
           />
-        <label
-          htmlFor="remember"
-          className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-        >
-          Completed
-        </label>
+          <label
+            htmlFor="remember"
+            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          >
+            Completed
+          </label>
         </div>
       </div>
 
