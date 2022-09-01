@@ -1,7 +1,5 @@
 ## Badges
 
-Add badges from somewhere like: [shields.io](https://shields.io/)
-
 [![MIT License](https://img.shields.io/badge/Daniel-supports%20me-pink.svg)](https://choosealicense.com/licenses/mit/)
 
 
